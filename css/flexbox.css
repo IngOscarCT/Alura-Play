@@ -1,0 +1,164 @@
+/*Cabecera*/
+.cabecera__container { /*Se declara la clase para trabajar con ella*/
+    display: flex; /*Por defecto esta propiedad coloca a los elementos uno al lado del otro*/
+    justify-content: space-between; /*Esta propiedad permite establecer un espacio entre elementos hijos de la clase padre*/
+    align-items: center; /*Esta propiedad permite que los elementos dentro de la clase se centren según la caja de la clase padre*/
+    position: fixed; /*Esta propiedad permite dar una posición fija a la cabecera en la pantalla*/
+    top: 0; /*Se establece el eje para el cual la cabecera se mantendra fija, en este caso la superior (top)*/
+}
+
+.cabecera__buscar__item {
+    display: none;
+}
+
+/*Sección menú lateral*/
+.menu__container {
+    position: fixed;
+    bottom: 0%; /*Se alinea el menú completamente a la parte inferior del la pantalla*/
+    height: 75px; /*Ajusta el tamaño de la caja a las medida seleccionada*/
+    width: 100%; /*Propiedad para ocupar el hanco completo de la pantalla*/
+}
+
+.menu__lista {
+    display: flex;
+    justify-content: space-around; /*Distribuye uniformemente los elementos*/
+    height: 100%;
+}
+
+.menu__lista li { /*Se especifica el elemento dentro de la calse padre con la que se desea trabjar*/
+    align-self: center; /*Propiedad que permite trabajar con la alineación de los elementos hijos de una clase de manera individual o en conjunto*/
+}
+
+.menu__itens {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu__lista:nth-child(2), /*Pseudo clase que permite trabajar con uno o más elementos en funcion de su posición entre un grupo de hermanos, entre los () se coloca el # del elemento con el que se desea trabajar*/
+.menu__lista:nth-child(3),
+.menu__lista:nth-child(4) { /*Esto nos permite trabajar con elementos hermanos dentro de un mismo padre, en este ejemplo las listas*/
+    display: none;
+}
+
+/*Sección de Menú Superior*/
+.superior__seccion__container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /*Propiedad que permite trabajar el alineamiento del texto de los elementos, en este caso nowrap evita que el texto se quiebre en varias partes*/
+    overflow: scroll; /*Propiedad que permite aplicar una barra de deslizaciento o desplazamiento*/
+    gap: 15px; /*Propiedad que añade un espacio a los elementos de esta caja*/
+}
+
+/*Sección de Videos*/
+.videos__container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.videos__item {
+    height: 303px; /*Se configura el alto del video*/
+    width: 280px; /*Se configura el ancho del video*/
+    flex-grow: 1; /*Propiedad que permite distribuir los elementos aprovechando el espacio proporcionalmente dentro del contenedor, el #1 da la proporcion sometrica a todos los elementos del contenedor segín su espacio, cuanto mayor sea el # de la propiedad más crece el elemento*/
+    /*Por otro lado la propiedad flex-shrink, funciona totalmente al revés, cuanto más grande el # de la propiedas más se encoge el elemento con respecto a sus hermanos*/
+}
+
+ /*Para las descripciones de los videos*/ 
+
+.descripcion-video {
+    margin-top: 1rem;
+    display: flex;
+    align-items: start; 
+    
+}
+
+.descripcion-video img {
+    margin-right: 1rem; 
+    flex-shrink: 0;  /*  Evita que la imagen se reduzca */
+    
+}
+
+.detalles__video {
+    flex-direction: column;
+    text-align:left;
+
+}
+
+.detalles__video h3{
+    margin-bottom: 10px;
+}
+
+/*Pie de Pagina*/
+.rodapie__container { /*Se declara la calse padre para el footer*/
+    display: flex;
+    flex-direction: column; /*Esta propiedad permite cambiar la orientación de vertical a horizontal de los elementos, colocandolos en columna para este caso*/
+    flex-wrap: wrap; /*Esta propiedad permite quebrar o separar los elementos columnas o filas en varias partes para que se adapten dentro del contenedor*/
+    /*flex-flow: column wrap*/ /*Esta liena realiza la misma acción que las dos lineas anteriores*/
+}
+
+
+
+/*Para dar la adaptabilidad al tipo de pantalla, se utilizan los Media Queries*/
+/*Se utiliza @media para incluir un bloque de propiedades CSS solo si una determinada condición se cumple o es verdadera, diseño web responsive y adaptable*/
+@media (min-width:834px) { /*en medio de los () se colocan los valores que serán los puntos de ruptura, que son los puntos de ruptura en el diseño responsivo, estos puntos son las medidas de anchura que utilizamos para el diseño responsivo*/
+    
+    /*Cabecera*/
+    .cabecera__buscar__item {
+        display: block;
+    }
+
+    /*Menú latera para mobiles/tablets*/
+    .menu__container { /*Clase padre para las listas*/
+        left: 0; /*Se determina el espacio que debe haber entre el contenedor y el borde izquierdo de la pantalla*/
+        height: auto; /*Se determina el tamaño del contenedor en automatico dependiendo del tamaño de la pantalla*/
+        width: 74px; /*Se determina el ancho del menú a 74px*/
+        top: 80px; /*Se determina una espacio de 80´x entre el borde superior de la pantalla y el menú*/
+    }
+    
+    .menu__lista { /*Clase padre para los elementos de las listas*/
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 15px;
+        gap: 33px;
+    }
+
+    /*Pie de Pagina*/
+    .rodapie__container {
+        justify-content: space-between;
+    }
+
+} /*Esto significa que lo que está dentro de las llaves solo se mostrará cuando los dispositivos tengan al menos la cantidad px declarada en los ()*/
+
+@media (min-width:1440px) { /*La medida entre los () es la medida por defecto para las pantallas de PC*/
+    
+    .menu__container{
+        width: 239px; /*Ancho para el menú lateral en pantallas de PC*/
+        overflow: scroll; /*Se añade una barra de desplazamiento para poder visualizar todo el menú*/
+    }
+
+    .menu__lista {
+        height: auto; /*Se ajusta el tamaño de la lista para que se puedan visualizar todas las listas*/
+        padding: 20px 17px 10px 15px; /*Se ajusta el area del efecto visual de los elementos de la lista para no ocupar el ancho total*/
+        gap: 12px; /*Se cambia el espacio entre los elementos de las listas y las listas*/
+    }
+
+    .menu__lista:nth-child(2),
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4) { 
+        display: flex;
+    }
+
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4) { /*Esto permite trabajar directamente con la lista 3*/
+        flex-direction: column-reverse; /*Permite invertir el ordern de los elementos de la lista en forma de clumna*/
+        /*Para la 4ta lista revisar la utilización de la propiedad para items order qe permite mover cada elemento por individual*/
+    }
+
+    .menu__itens {
+        flex-direction: row; /*Esto permite colocar los logos y los nombres del menú, uno al lado del otro*/
+        gap: 18px; /*Espacio entre el logo y el texto*/
+        align-items: center; /*Se centran los elementos de las lsitas del menú*/
+    }
+
+}
